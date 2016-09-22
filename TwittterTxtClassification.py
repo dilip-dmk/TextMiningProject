@@ -1,14 +1,16 @@
 import csv
-import pandas as pd
-from sklearn.naive_bayes import BernoulliNB
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.naive_bayes import MultinomialNB
-from sklearn import cross_validation, svm, linear_model
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from time import time
+
+from sklearn import cross_validation, svm, linear_model
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.naive_bayes import MultinomialNB
+
 from ClassificationReport import plot_classification_report
 from CleaningTweets import tweet_to_words
 from ConfusionMatrix import show_confusion_matrix
+
 
 # train_data.csv contains two columns
 # first column is the tweet content (quoted)
@@ -50,12 +52,19 @@ def learn_model(data,target,clf):
 
     clf1 = clf.fit(data_train,target_train)
     pred1 = clf1.predict(data_test)
-    evaluate_model(target_test,pred1,clf1)
+   # evaluate_model(target_test,pred1,clf1)
+    cr = classification_report(target_test, pred1)
+    cr_plt = plot_classification_report(cr)
+    print("Accuracy {:.2%}".format(accuracy_score(target_test, pred1)))
+    cr_plt.savefig('plots/' + (str(clf).partition("(")[0]) + '_CR.pdf', bbox_inches='tight')
+    print((str(clf).partition("(")[0]) + " Classification Report saved successfully")
+    cr_plt.close()
 
-    C = confusion_matrix(target_test,pred1)
-    plt = show_confusion_matrix(C, ['NOT', 'POLIT'])
-    plt.savefig('plots/'+(str(clf1).partition("(")[0])+'_CM.pdf')
+    cm = confusion_matrix(target_test,pred1)
+    cm_plt = show_confusion_matrix(cm, ['NOT', 'POLIT'])
+    cm_plt.savefig('plots/'+(str(clf1).partition("(")[0])+'_CM.pdf')
     print((str(clf1).partition("(")[0])+" Confusion Matrix saved successfully")
+    cm_plt.close()
 
 def main():
     clf1 = MultinomialNB()
