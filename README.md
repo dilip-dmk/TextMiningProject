@@ -15,7 +15,7 @@ Classifiers Used :
  
 **Confusion Matrix** and **Classification Report** plotted for these classifers
 
-Pending : Neural Networks CNN 
+Cross-Validation of 10 folds was also done.
 
 @dilip-dmk  <br>
 @salman-kha3  <br>
