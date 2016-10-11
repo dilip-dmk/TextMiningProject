@@ -13,7 +13,7 @@ Classifiers Used :
  3. SVC
  4. Logistic Regression 
  
-**Confusion Matrix** and **Classification Report** plotted for these classifers
+**Confusion Matrix** and **Classification Report** plotted for these classifers <br>
 **10-fold Cross-Validation** was also done.
 
 Main file to run : **TwittterTxtClassification.py**
@@ -21,7 +21,4 @@ Main file to run : **TwittterTxtClassification.py**
 Documentation folder contains the Report and Presentation. 
 
 
-Contributors : 
-@dilip-dmk  <br>
-@salman-kha3  <br>
-@revathi-sadanand  <br>
+Contributors :  @dilip-dmk, @salman-kha3 and @revathi-sadanand
